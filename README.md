@@ -1,6 +1,6 @@
 # StoryStacker
 
-StoryStacker is a user-friendly command-line interface (CLI) application that allows Book Club leaders to efficiently manage authors and books.   
+StoryStacker is a user-friendly command-line interface (CLI) application that allows Book Club leaders to efficiently manage authors, books and genres.   
 
 
 ## Installation

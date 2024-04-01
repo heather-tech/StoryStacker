@@ -18,7 +18,7 @@ def main_menu():
             book_menu(library)
         elif choice == '3':
             print("Goodbye!")
-            break
+            break # Exit loop 
         else:
             print("Please select a valid option!")
 # Author Menu
@@ -28,7 +28,8 @@ def author_menu(library):
         print("1. Create Author")
         print("2. Delete Author")
         print("3. List Authors")
-        print("4. Go Back")
+        print("4. View Author Details")
+        print("5. Go Back")
 
         choice = input("Select an option: ")
 
@@ -37,15 +38,26 @@ def author_menu(library):
             library.create_author(name)
             print("Author created!")
         elif choice == '2':
-            author_id = int(input("Enter author ID to delete: "))
+            author_id = int(input("Enter author number to delete: "))
             library.delete_author(author_id)
             print("Author deleted!")
         elif choice == '3':
             authors = library.get_all_authors()
-            for author in authors:
-                print(f"Author ID: {author.id}, Name: {author.name}")
+            for i, author in enumerate(authors, 1):
+                print(f"{i}. {author.name}")
         elif choice == '4':
-            break
+            author_id = int(input("Enter author number to view details: "))
+            author = library.find_author_by_id(author_id)
+            if author:
+                print(f"Author Details:")
+                print(f"Name: {author.name}")
+                print("Books Written:")
+                for i, book in enumerate(author.books, 1):
+                    print(f"{i}. {book.title}")
+            else:
+                print("Author not found.")
+        elif choice == '5':
+            break # Return to main menu
         else:
             print("Please select a valid option.")
 
@@ -70,19 +82,18 @@ def book_menu(library):
             else:
                 print("Author not found. Please create the author first.")
         elif choice == '2':
-            book_id = int(input("Enter book ID to delete: "))
+            book_id = int(input("Enter book number to delete: "))
             library.delete_book(book_id)
             print("Book deleted!")
         elif choice == '3':
             books = library.get_all_books()
-            for book in books:
+            for i, book in enumerate(books, 1):
                 if book.author:
-                    print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author.name}")
+                    print(f"{i}. {book.title} by {book.author.name} ({book.genre.name})")
                 else:
-                    print(f"Book ID: {book.id}, Title: {book.title}, Author: Unknown")
-                # print(f"Book ID: {book.id}, Title: {book.title}, Author: {book.author.name}")
+                    print(f"{i}. {book.title} by Unknown ({book.genre.name})")
         elif choice == '4':
-            break
+            break # Return to main menu
         else:
             print("Please select a valid option.")
 

@@ -14,6 +14,16 @@ class Author(Base):
 
     def __repr__(self):
         return f'<Author(id={self.id}, name={self.name})>'
+    
+class Genre(Base):
+    __tablename__ = 'genres'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    books = relationship('Book', back_populates='genre')
+
+    def __repr__(self):
+        return f'<Genre(id={self.id}, name={self.name})>'
 
 class Book(Base):
     __tablename__ = 'books'
@@ -22,7 +32,9 @@ class Book(Base):
     title = Column(String, nullable=False)
     author_id = Column(Integer, ForeignKey('authors.id'))
     author = relationship('Author', back_populates='books')
+    genre_id = Column(Integer, ForeignKey('genres.id'))
+    genre = relationship('Genre', back_populates='books')
 
     def __repr__(self):
-        return f'<Book(id={self.id}, title= {self.title}, author_id={self.author_id})>'
+        return f'<Book(id={self.id}, title= {self.title}, author_id={self.author_id}, genre_id={self.genre.id})>'
     
