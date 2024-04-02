@@ -28,7 +28,6 @@ def seed_data():
 
     #Genres
     for _ in range (15):
-        breakpoint()
         genre = Genre(name=faker.random_element(genre_names))
         session.add(genre)
     session.commit()
