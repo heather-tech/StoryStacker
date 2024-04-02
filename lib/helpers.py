@@ -12,11 +12,22 @@ class Library:
         author = Author(name=name)
         session.add(author)
         session.commit()
+        return author
 
-    def create_book(self, title, author_id):
-        book = Book(title=title, author_id=author_id)
+    def create_book(self, title, author_id, genre_id):
+        book = Book(title=title, author_id=author_id, genre_id=genre_id)
         session.add(book)
         session.commit()
+
+        author = session.query(Author).get(author_id)
+        if not author:
+            print("Author not found.")
+
+        if not author.books:
+            author.book.append(book)
+            session.commit()
+
+        return book
         
 
     def create_genre(self, genre_name, book=None):

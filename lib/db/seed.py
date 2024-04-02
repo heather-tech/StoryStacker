@@ -20,17 +20,19 @@ def seed_data():
     for _ in range(5):
         author = Author(name=faker.name())
         session.add(author)
-    session.commit()
+        session.commit()
     print("Number of authors inserted:", session.query(Author).count())
 
     # List of genre names
     genre_names = ['Fantasy', 'Mystery', 'Romance', 'Thriller', 'Science Fiction', 'Young Adult', 'Fiction', 'Historical Fiction', 'Drama', 'Poetry', 'Humor', 'Folklore', 'Biography', 'Self-Help', 'Adventure']
 
     #Genres
-    for _ in range (15):
-        genre = Genre(name=faker.random_element(genre_names))
+    # for _ in range (15):
+        # genre = Genre(name=faker.random_element(genre_names))
+    for genre_name in genre_names:
+        genre = Genre(name=genre_name)
         session.add(genre)
-    session.commit()
+        session.commit()
     print("Number of genres inserted:", session.query(Genre).count())
         
 
@@ -40,7 +42,7 @@ def seed_data():
     for _ in range(10):
         book = Book(title=faker.catch_phrase(), author=faker.random_element(authors), genre=faker.random_element(genres))
         session.add(book)
-    session.commit()
+        session.commit()
     print("Number of books inserted:", session.query(Book).count())
 
 

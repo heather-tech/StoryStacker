@@ -4,7 +4,7 @@ StoryStacker is a user-friendly command-line interface (CLI) application that al
 
 
 ## Installation
-To install and run StoryStacker, ensure that you have Python 3 and pip installed on your system.
+To install and run StoryStacker, ensure that you have Python 3 and pip installed on your system. You also must install Faker to be able to seed the database. 'pip install faker'
 
 1. Clone this repository to your local machine and navigate to its directory.
 2. Run `pipenv install` to install all the necessary package dependencies.
@@ -24,7 +24,8 @@ Author Management (Main Menu Option 1)
 1. Create Author
 2. Delete Author
 3. List Authors
-4. Go Back
+4. View Author Details
+5. Go Back
 
 Book Management (Main Menu Option 2)
 1. Create Book
