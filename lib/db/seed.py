@@ -15,6 +15,16 @@ faker = Faker()
 
 # Create instances of classes 
 def seed_data():
+    # Clears database before reseeding. 
+    authors = session.query(Author).all()
+    for author in authors:
+        session.delete(author)
+    books = session.query(Book).all()
+    for book in books:
+        session.delete(book)
+    genres = session.query(Genre).all()
+    for genre in genres:
+        session.delete(genre)
 
     # Authors
     for _ in range(5):
@@ -27,8 +37,6 @@ def seed_data():
     genre_names = ['Fantasy', 'Mystery', 'Romance', 'Thriller', 'Science Fiction', 'Young Adult', 'Fiction', 'Historical Fiction', 'Drama', 'Poetry', 'Humor', 'Folklore', 'Biography', 'Self-Help', 'Adventure']
 
     #Genres
-    # for _ in range (15):
-        # genre = Genre(name=faker.random_element(genre_names))
     for genre_name in genre_names:
         genre = Genre(name=genre_name)
         session.add(genre)
